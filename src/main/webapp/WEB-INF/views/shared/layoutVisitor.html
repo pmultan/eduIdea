@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:fragment="headerFragment">
+<head th:fragment="headFragment">
 <title>EduIdea alpha</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <script
@@ -11,9 +11,12 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css" />
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-
 </head>
 <body>
-	X
+	<div th:fragment="headerFragment">
+		<div th:if="${#httpServletRequest.remoteUser != null}">
+			<h3>Welcome <span th:text="${#httpServletRequest.remoteUser}" class="label label-default">sample_user</span> ! </h3>
+		</div>
+	</div>
 </body>
 </html>

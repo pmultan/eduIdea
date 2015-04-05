@@ -16,7 +16,7 @@ public class NewsServiceImpl implements NewsService {
 
 	@Resource
 	private NewsRepository newsRepository;
-	
+
 	@Override
 	@Transactional
 	public News create(News news) {

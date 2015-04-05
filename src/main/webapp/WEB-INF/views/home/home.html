@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:include="shared/layoutVisitor :: headerFragment">
+<head th:include="shared/layoutVisitor :: headFragment">
 </head>
 <body>
+	<div th:include="shared/layoutVisitor :: headerFragment"></div>
 	<h1>Hello world!</h1>
 
-	<P>The time on the server is <span th:text="${newsViewModel.serverTime}"></span></P>
+	<P>
+		The time on the server is <span th:text="${newsViewModel.serverTime}"></span>
+	</P>
 
 	<h2>News</h2>
 	<div th:if="${not #lists.isEmpty(newsViewModel.getNewsList())}">
-		<div th:each="item : ${newsViewModel.getNewsList()}" class="panel panel-default">
+		<div th:each="item : ${newsViewModel.getNewsList()}"
+			class="panel panel-default">
 			<div th:utext="${item} ? ${item.getTitle()}" class="panel-heading">A</div>
 			<div th:utext="${item} ? ${item.getText()}" class="panel-body">B</div>
 		</div>

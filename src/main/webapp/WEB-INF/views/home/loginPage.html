@@ -10,10 +10,26 @@
 </div>
 <div th:if="(${loggedOut})" class="alert alert-success">
   <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-  <span class="sr-only">Infor:</span>
-  Successfuly logged out !
+  <span class="sr-only">Info:</span>
+  Successfully logged out !
+</div> 
+<div th:if="(${loggedIn})" class="alert alert-success">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Info:</span>
+  Successfully logged in !
+</div> 
+<div th:if="(${unathorizedAccess})" class="alert alert-warning">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Info:</span>
+  403 - Unauthorized access <br />
+  First you need to log in
 </div>
-	<div tiles:fragment="content">
+<div th:if="(${unathorizedAccess}) and (${#httpServletRequest.remoteUser != null})" class="alert alert-warning">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Info:</span>
+  403 - Unauthorized access
+</div>
+	<div th:if="${#httpServletRequest.remoteUser == null}">
 		<form name="f" th:action="@{/login}" method="post">
 			<fieldset>
 				<legend>Please Login</legend>

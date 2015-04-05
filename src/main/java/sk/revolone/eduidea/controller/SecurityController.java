@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import sk.revolone.eduidea.viewmodel.LoginViewModel;
+
 @Controller
 public class SecurityController {
 
@@ -29,7 +31,7 @@ public class SecurityController {
 		logger.info("Logout successful.");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("home/loginPage");
-
+		
 		mav.addObject("loggedOut", true);
 		return (mav);
 	}
@@ -39,7 +41,7 @@ public class SecurityController {
 		logger.info("Login successful.");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("home/loginPage");
-
+		
 		mav.addObject("loggedIn", true);
 		return (mav);
 	}
@@ -49,7 +51,7 @@ public class SecurityController {
 		logger.info("Unauthorized access.");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("home/loginPage");
-
+		
 		mav.addObject("unathorizedAccess", true);
 		return (mav);
 	}

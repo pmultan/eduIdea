@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import sk.revolone.eduidea.data.dao.NewsService;
+import sk.revolone.eduidea.viewmodel.LoginViewModel;
 import sk.revolone.eduidea.viewmodel.NewsViewModel;
 
 /**
@@ -38,7 +39,7 @@ public class HomeController {
 		NewsViewModel newsViewModel = new NewsViewModel();
 		newsViewModel.fillWithBasicValues(newsService, locale);
 
-		mav.addObject("newsViewModel", newsViewModel);
+		mav.addObject("model", newsViewModel);
 
 		return (mav);
 	}
@@ -50,6 +51,7 @@ public class HomeController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("home/userHome");
 
+		mav.addObject("model", new LoginViewModel());
 		return (mav);
 	}
 

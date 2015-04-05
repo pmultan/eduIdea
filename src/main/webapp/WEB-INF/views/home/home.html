@@ -7,18 +7,18 @@
 	<h1>Hello world!</h1>
 
 	<P>
-		The time on the server is <span th:text="${newsViewModel.serverTime}"></span>
+		The time on the server is <span th:text="${model.serverTime}"></span>
 	</P>
 
 	<h2>News</h2>
-	<div th:if="${not #lists.isEmpty(newsViewModel.getNewsList())}">
-		<div th:each="item : ${newsViewModel.getNewsList()}"
+	<div th:if="${not #lists.isEmpty(model.getNewsList())}">
+		<div th:each="news : ${model.getNewsList()}"
 			class="panel panel-default">
-			<div th:utext="${item} ? ${item.getTitle()}" class="panel-heading">A</div>
-			<div th:utext="${item} ? ${item.getText()}" class="panel-body">B</div>
+			<div th:utext="${news} ? ${news.getTitle()}" class="panel-heading">A</div>
+			<div th:utext="${news} ? ${news.getText()}" class="panel-body">B</div>
 		</div>
 	</div>
-	<div th:if="${#lists.isEmpty(newsViewModel.getNewsList())}">
+	<div th:if="${#lists.isEmpty(model.getNewsList())}">
 		There are no news yet - just you wait !</div>
 </body>
 </html>

@@ -14,6 +14,7 @@
 </head>
 <body>
 	<div th:fragment="headerFragment">
+	    <span th:utext="${model.AppTitle}"></span>
 		<div th:if="${#httpServletRequest.remoteUser != null}">
 			<h3>Welcome <span th:text="${#httpServletRequest.remoteUser}" class="label label-default">sample_user</span> ! </h3>
 		</div>

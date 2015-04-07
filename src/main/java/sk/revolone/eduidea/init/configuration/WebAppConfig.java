@@ -1,4 +1,4 @@
-package sk.revolone.eduidea.init;
+package sk.revolone.eduidea.init.configuration;
 import java.util.Properties;
 
 import org.hibernate.ejb.HibernatePersistence;

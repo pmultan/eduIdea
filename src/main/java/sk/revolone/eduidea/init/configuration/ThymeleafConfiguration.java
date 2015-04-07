@@ -1,4 +1,4 @@
-package sk.revolone.eduidea.init;
+package sk.revolone.eduidea.init.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

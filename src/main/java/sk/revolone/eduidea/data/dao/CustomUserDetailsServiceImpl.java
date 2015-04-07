@@ -22,7 +22,7 @@ import sk.revolone.eduidea.data.repository.UserRepository;
  */
 @Service("authService")
 @Transactional(readOnly = true)
-public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
+public class CustomUserDetailsServiceImpl implements UserDetailsService {
 	
 	@Autowired
 	private UserRepository userRepository;
@@ -41,7 +41,7 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
 			boolean credentialsNonExpired = true;
 			boolean accountNonLocked = true;
 			
-			return new User(
+			User user = new User(
 					domainUser.getUsername(), 
 					domainUser.getPassword().toLowerCase(),
 					enabled,
@@ -49,6 +49,8 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
 					credentialsNonExpired,
 					accountNonLocked,
 					getAuthorities(domainUser.getRole().getRole()));
+			
+			return user; 
 			
 		} catch (Exception e) {
 			throw new RuntimeException(e);
@@ -75,10 +77,10 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
 		
 		if (role.intValue() == 1) {
 			roles.add("ROLE_USER");
-			roles.add("ROLE_ADMIN");
 			
 		} else if (role.intValue() == 2) {
 			roles.add("ROLE_USER");
+			roles.add("ROLE_ADMIN");
 		}
 		
 		return roles;

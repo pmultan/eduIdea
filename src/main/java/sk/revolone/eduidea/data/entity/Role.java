@@ -12,7 +12,7 @@ public class Role {
 	
 	@OneToOne
 	private User user;
-	private Integer role;
+	private Integer role_id;
 	
 	public Long getId() {
 		return id;
@@ -27,10 +27,10 @@ public class Role {
 		this.user = user;
 	}
 	public Integer getRole() {
-		return role;
+		return role_id;
 	}
 	public void setRole(Integer role) {
-		this.role = role;
+		this.role_id = role;
 	}
 	
 	

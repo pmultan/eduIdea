@@ -43,8 +43,14 @@
 						<li th:if="${#httpServletRequest.remoteUser != null}">
 							<p class="navbar-text" th:inline="text">Logged in as <span style="color: #d9230f;">[[${#httpServletRequest.remoteUser}]]</span></p>
 						</li>
-						<li><a th:href="@{/login}">Sign In</a></li>
-						<li><a th:href="@{/sign-up}">Sign Up</a></li>
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#" id="themes">User <span
+								class="caret"></span></a>
+							<ul class="dropdown-menu" aria-labelledby="User options">
+								<li><a th:href="@{/logout}">Sign Out</a></li>
+								<li class="divider"></li>
+								<li><a th:href="@{/user/options}">Options</a></li>
+							</ul></li>
 					</ul>
 				</div>
 			</div>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="shared/layoutVisitor :: headFragment"></head>
+<body>
+	<div th:include="shared/layoutVisitor :: headerFragment"
+		th:if="${#httpServletRequest.remoteUser == null}"></div>
+	<div th:include="shared/layoutLogged :: headerFragment"
+		th:if="${#httpServletRequest.remoteUser != null}"></div>
+	<div class="container">
+		<div class="page-header clearfix" th:utext="'&lt;h2&gt;' + ${model.getPageTitle()} +'&lt;/h2&gt;'"></div>
+		<div th:fragment="wipFragment">
+			<div class="alert alert-info" role="alert">
+				<span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span>
+				<span class="sr-only">Info:</span> This page is under construction
+				and will go live soon. Meanwhile please enjoy our other features and
+				pages.
+			</div>
+		</div>
+	</div>
+</body>
+</html>

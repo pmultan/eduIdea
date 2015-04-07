@@ -1,24 +1,29 @@
- <!DOCTYPE html>
+
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:include="shared/layoutVisitor :: headFragment">
 </head>
 <body>
-	<div th:include="shared/layoutVisitor :: headerFragment"></div>
-	<h1>Hello world!</h1>
-
-	<P>
-		The time on the server is <span th:text="${model.serverTime}"></span>
-	</P>
-
-	<h2>News</h2>
-	<div th:if="${not #lists.isEmpty(model.getNewsList())}">
-		<div th:each="news : ${model.getNewsList()}"
-			class="panel panel-default">
-			<div th:utext="${news} ? ${news.getTitle()}" class="panel-heading">A</div>
-			<div th:utext="${news} ? ${news.getText()}" class="panel-body">B</div>
+	<div th:include="shared/layoutVisitor :: headerFragment" th:if="${#httpServletRequest.remoteUser == null}"></div>
+	<div th:include="shared/layoutLogged :: headerFragment" th:if="${#httpServletRequest.remoteUser != null}"></div>
+	<div class="container">
+		<div class="page-header clearfix">
+			<h1>Hello world!</h1>
 		</div>
+		<P>
+			The time on the server is <span th:text="${model.serverTime}"></span>
+		</P>
+
+		<h2>News</h2>
+		<div th:if="${not #lists.isEmpty(model.getNewsList())}">
+			<div th:each="news : ${model.getNewsList()}"
+				class="panel panel-default">
+				<div th:utext="${news} ? ${news.getTitle()}" class="panel-heading">A</div>
+				<div th:utext="${news} ? ${news.getText()}" class="panel-body">B</div>
+			</div>
+		</div>
+		<div th:if="${#lists.isEmpty(model.getNewsList())}">There are no
+			news yet - just you wait !</div>
 	</div>
-	<div th:if="${#lists.isEmpty(model.getNewsList())}">
-		There are no news yet - just you wait !</div>
 </body>
 </html>

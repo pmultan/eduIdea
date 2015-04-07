@@ -3,44 +3,68 @@
 <head th:include="shared/layoutVisitor :: headFragment">
 </head>
 <body>
-<div th:if="(${loginFailed})" class="alert alert-danger">
-  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-  <span class="sr-only">Error:</span>
-  Login failed
-</div>
-<div th:if="(${loggedOut})" class="alert alert-success">
-  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-  <span class="sr-only">Info:</span>
-  Successfully logged out !
-</div> 
-<div th:if="(${loggedIn})" class="alert alert-success">
-  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-  <span class="sr-only">Info:</span>
-  Successfully logged in !
-</div> 
-<div th:if="(${unathorizedAccess})" class="alert alert-warning">
-  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-  <span class="sr-only">Info:</span>
-  403 - Unauthorized access <br />
-  First you need to log in
-</div>
-<div th:if="(${unathorizedAccess}) and (${#httpServletRequest.remoteUser != null})" class="alert alert-warning">
-  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-  <span class="sr-only">Info:</span>
-  403 - Unauthorized access
-</div>
-	<div th:if="${#httpServletRequest.remoteUser == null}">
-		<form name="f" th:action="@{/login}" method="post">
-			<fieldset>
-				<legend>Please Login</legend>
-				<label for="username">Username</label> <input type="text"
-					id="username" name="username" /> <label for="password">Password</label>
-				<input type="password" id="password" name="password" />
-				<div class="form-actions">
-					<button type="submit" class="btn">Log in</button>
+	<div th:include="shared/layoutVisitor :: headerFragment"
+		th:if="${#httpServletRequest.remoteUser == null}"></div>
+	<div th:include="shared/layoutLogged :: headerFragment"
+		th:if="${#httpServletRequest.remoteUser != null}"></div>
+	<div class="container">
+		<div class="page-header clearfix">
+			<h1>Sign In</h1>
+		</div>
+		<div th:if="(${loginFailed})" class="alert alert-danger">
+			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+			<span class="sr-only">Error:</span> Login failed
+		</div>
+		<div th:if="(${loggedOut})" class="alert alert-success">
+			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+			<span class="sr-only">Info:</span> Successfully logged out !
+		</div>
+		<div th:if="(${loggedIn})" class="alert alert-success">
+			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+			<span class="sr-only">Info:</span> Successfully logged in !
+		</div>
+		<div th:if="(${unathorizedAccess})" class="alert alert-warning">
+			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+			<span class="sr-only">Info:</span> 403 - Unauthorized access <br />
+			First you need to log in
+		</div>
+		<div
+			th:if="(${unathorizedAccess}) and (${#httpServletRequest.remoteUser != null})"
+			class="alert alert-warning">
+			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+			<span class="sr-only">Info:</span> 403 - Unauthorized access
+		</div>
+		<div th:if="${#httpServletRequest.remoteUser == null}" class="row">
+			<div class="col-lg-6">
+				<div class="well bs-component">
+					<form name="f" th:action="@{/login}" method="post"
+						class="form-horizontal">
+						<fieldset>
+							<legend>Enter login credentials</legend>
+							<div class="form-group">
+								<label for="username" class="col-lg-2 control-label">Username</label>
+								<div class="col-lg-10">
+									<input type="text" id="username" name="username"
+										class="form-control" placeholder="Username" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="password" class="col-lg-2 control-label">Password</label>
+								<div class="col-lg-10">
+									<input type="password" id="password" name="password"
+										class="form-control" placeholder="Password" />
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-lg-10 col-lg-offset-2">
+									<button type="submit" class="btn btn-primary">Log in</button>
+								</div>
+							</div>
+						</fieldset>
+					</form>
 				</div>
-			</fieldset>
-		</form>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

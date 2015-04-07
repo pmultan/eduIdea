@@ -14,7 +14,8 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
 
         if (authException != null) {
             // you can check for the spefic exception here and redirect like this
-            response.sendRedirect("403.html");
+        	String url = request.getContextPath() + "/403";
+            response.sendRedirect(url);
         }
     }
 }

@@ -5,6 +5,6 @@ package sk.revolone.eduidea.viewmodel;
 
 public class BaseViewModel {
 
-	public String AppTitle = "<h2>EDUIDEA TITLE</h2>";
+	public String AppTitle = "EduIdea";
 	
 }

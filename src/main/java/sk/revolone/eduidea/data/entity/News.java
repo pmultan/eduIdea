@@ -2,6 +2,7 @@ package sk.revolone.eduidea.data.entity;
 
 import java.sql.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,14 +14,16 @@ import javax.persistence.Id;
 @Entity
 public class News {
 	
-	@Id
+	@Id 
 	@GeneratedValue
 	private Integer Id;
 	
 	private Date DateCreated;
 	private Long UserCreated;
 	private String Title;
-	private String Text;
+	
+	@Column(columnDefinition="TEXT")
+	private String Text; 
 	
 	public Integer getId() {
 		return Id;

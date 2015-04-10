@@ -6,4 +6,5 @@ import sk.revolone.eduidea.data.entity.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 	User findByUsername(String username);
+	User findByUsernameOrEmail(String username, String email);
 }

@@ -1,4 +1,8 @@
 
+	drop table News;
+	drop table Role;
+	drop table User;
+	
     create table News (
         Id integer not null auto_increment,
         DateCreated date,
@@ -17,12 +21,16 @@
 
     create table User (
         id bigint not null,
+        email varchar(255),
         firstName varchar(255),
         lastName varchar(255),
         password varchar(255),
         username varchar(255),
         primary key (id)
     );
+
+    alter table User 
+        add constraint UK_e6gkqunxajvyxl5uctpl2vl2p  unique (email);
 
     alter table User 
         add constraint UK_jreodf78a7pl5qidfh43axdfb  unique (username);

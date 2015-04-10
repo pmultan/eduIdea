@@ -34,7 +34,7 @@ public class CustomUserDetailsServiceImpl implements UserDetailsService {
 	 */
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		try {
-			sk.revolone.eduidea.data.entity.User domainUser = userRepository.findByUsername(username);
+			sk.revolone.eduidea.data.entity.User domainUser = userRepository.findByUsernameOrEmail(username, username);
 			
 			boolean enabled = true;
 			boolean accountNonExpired = true;

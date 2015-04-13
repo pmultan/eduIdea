@@ -68,6 +68,7 @@ public class UserController {
 	public ModelAndView submitEditProfile(@Valid User user,
 			BindingResult result, Model model, HttpServletRequest request,
 			@ModelAttribute("password") String password) {
+		//TODO: Add error handeling for existing usernames (real-time would be best)
 		ModelAndView mav = new ModelAndView();
 		if (result.hasErrors()) {
 			mav.setViewName("shared/error");

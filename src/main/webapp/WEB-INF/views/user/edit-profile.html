@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="shared/layoutVisitor :: headFragment">
+</head>
+<body>
+	<div th:include="shared/layoutVisitor :: headerFragment"
+		th:if="${#httpServletRequest.remoteUser == null}"></div>
+	<div th:include="shared/layoutLogged :: headerFragment"
+		th:if="${#httpServletRequest.remoteUser != null}"></div>
+	<div class="container">
+		<div class="page-header clearfix">
+			<h3>Edit profile</h3>
+		</div>
+		<div class="row">
+			<div class="col-lg-6">
+				<div class="well bs-component">
+					<form name="f" th:action="@{/user/edit-profile}"
+						accept-charset="utf-8" method="post" class="form-horizontal"
+						action="/user/edit-profile/">
+						<fieldset>
+							<legend th:if="${model.message == null}"
+								class="alert alert-warning" role="alert">
+								<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+								<span class="sr-only">Info:</span> In order to save the changes, you must enter the user password and press Save Changes button.
+							</legend>
+							<legend th:if="${model.message == 'ok'}"
+								class="alert alert-success" role="alert">
+								<span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+								<span class="sr-only">Info:</span> Form changes were
+								successfully saved !
+							</legend>
+							<legend th:if="${model.message == 'password'}"
+								class="alert alert-danger" role="alert">
+								<span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+								<span class="sr-only">Error:</span> You have entered wrong password !
+							</legend>
+							<div class="form-group">
+								<label for="username" class="col-lg-2 control-label">Username</label>
+								<div class="col-lg-10">
+									<input type="text" id="username" name="username"
+										class="form-control" placeholder="Username"
+										th:value="${model.user.getUsername()}" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="firstName" class="col-lg-2 control-label">First
+									Name</label>
+								<div class="col-lg-10">
+									<input type="text" id="firstName" name="firstName"
+										class="form-control" placeholder="First Name"
+										th:value="${model.user.getFirstName()}" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="lastName" class="col-lg-2 control-label">Last
+									Name</label>
+								<div class="col-lg-10">
+									<input type="text" id="lastName" name="lastName"
+										class="form-control" placeholder="Last Name"
+										th:value="${model.user.getLastName()}" />
+								</div>
+							</div>
+							<div class="form-group has-warning">
+								<label for="lastName" class="col-lg-2 control-label">Password</label>
+								<div class="col-lg-10">
+									<input type="password" id="password" name="password"
+										class="form-control" placeholder="password" />
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-lg-10 col-lg-offset-2">
+									<button type="submit" class="btn btn-primary">Save
+										changes</button>
+								</div>
+							</div>
+							<input type="hidden" name="email"
+								th:value="${model.user.getEmail()}" />
+						</fieldset>
+					</form>
+				</div>
+			</div>
+			<div class="col-lg-4 col-lg-offset-1">
+				Your e-mail : <br /> <span th:text="${model.user.getEmail()}"
+					style="font-weight: bold;"></span>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
-public class User {
+public class User implements CustomUser{
 	
 	@Id
 	private Long id;

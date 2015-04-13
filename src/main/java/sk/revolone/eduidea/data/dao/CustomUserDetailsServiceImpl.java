@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import sk.revolone.eduidea.data.entity.UserLogged;
 import sk.revolone.eduidea.data.repository.UserRepository;
  
 /**
@@ -41,14 +42,15 @@ public class CustomUserDetailsServiceImpl implements UserDetailsService {
 			boolean credentialsNonExpired = true;
 			boolean accountNonLocked = true;
 			
-			User user = new User(
+			UserLogged user = new UserLogged(
 					domainUser.getUsername(), 
 					domainUser.getPassword().toLowerCase(),
 					enabled,
 					accountNonExpired,
 					credentialsNonExpired,
 					accountNonLocked,
-					getAuthorities(domainUser.getRole().getRole()));
+					getAuthorities(domainUser.getRole().getRole()),
+					domainUser.getEmail());
 			
 			return user; 
 			

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="shared/layoutVisitor :: headFragment"></head>
+<body>
+	<div th:include="shared/layoutVisitor :: headerFragment"
+		th:if="${#httpServletRequest.remoteUser == null}"></div>
+	<div th:include="shared/layoutLogged :: headerFragment"
+		th:if="${#httpServletRequest.remoteUser != null}"></div>
+	<div class="container">
+		<div th:fragment="errorFragment">
+			<div class="alert alert-error" role="alert">
+				<span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span>
+				<span class="sr-only">Error:</span>There was an error on the page : <br />
+				<span th:text="${message}"></span>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

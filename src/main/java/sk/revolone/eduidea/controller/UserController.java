@@ -26,10 +26,11 @@ import sk.revolone.eduidea.data.dao.UserService;
 import sk.revolone.eduidea.data.entity.User;
 import sk.revolone.eduidea.data.entity.UserLogged;
 import sk.revolone.eduidea.exception.EntityNotFound;
+import sk.revolone.eduidea.exception.UsernameTaken;
 import sk.revolone.eduidea.viewmodel.user.EditProfileViewModel;
 
 @Controller
-public class UserController {
+public class UserController extends BaseController {
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(HomeController.class);
@@ -51,11 +52,7 @@ public class UserController {
 		try {
 			user = userService.findByEmail(email);
 		} catch (EntityNotFound e) {
-			e.printStackTrace();
-			mav.setViewName("shared/error");
-			mav.addObject("message",
-					"User you are trying to edit was not found");
-			return mav;
+			return errorView("User you are trying to edit was not found", e);
 		}
 
 		mav.setViewName("user/edit-profile");
@@ -68,7 +65,8 @@ public class UserController {
 	public ModelAndView submitEditProfile(@Valid User user,
 			BindingResult result, Model model, HttpServletRequest request,
 			@ModelAttribute("password") String password) {
-		//TODO: Add error handeling for existing usernames (real-time would be best)
+		// TODO: Add error handeling for existing usernames (real-time would be
+		// best)
 		ModelAndView mav = new ModelAndView();
 		if (result.hasErrors()) {
 			mav.setViewName("shared/error");
@@ -80,12 +78,9 @@ public class UserController {
 		try {
 			loggedUser = userService.findByEmail(user.getEmail());
 		} catch (EntityNotFound e1) {
-			e1.printStackTrace();
-			mav.setViewName("shared/error");
-			mav.addObject("message",
-					"User you are trying to edit was not found");
-			return mav;
+			return errorView("User you are trying to edit was not found", e1);
 		}
+
 		PasswordEncoder encoder = new Md5PasswordEncoder();
 		String hashedPass = encoder.encodePassword(password, null);
 
@@ -98,10 +93,11 @@ public class UserController {
 		try {
 			user = userService.updateProfile(user);
 		} catch (EntityNotFound e) {
-			e.printStackTrace();
-			mav.setViewName("shared/error");
-			mav.addObject("message",
-					"User you are trying to edit was not found");
+			return errorView("User you are trying to edit was not found", e);
+		}
+		catch (UsernameTaken eTaken) {
+			mav.setViewName("user/edit-profile");
+			mav.addObject("model", new EditProfileViewModel(user, "usernameTaken"));
 			return mav;
 		}
 

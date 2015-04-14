@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import sk.revolone.eduidea.data.entity.User;
 import sk.revolone.eduidea.data.repository.UserRepository;
 import sk.revolone.eduidea.exception.EntityNotFound;
+import sk.revolone.eduidea.exception.UsernameTaken;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -42,11 +43,18 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional(rollbackOn=EntityNotFoundException.class)
-	public User updateProfile(User user) throws EntityNotFound {
-		
+	public User updateProfile(User user) throws EntityNotFound, UsernameTaken {
 		User updatedUser = userRepository.findByUsernameOrEmail(user.getEmail(), user.getEmail());
 		if (updatedUser == null) 
 			throw new EntityNotFoundException("User that you are trying to update was not found in DB.");
+		
+		// Check if the username is not the same
+		if(!updatedUser.getUsername().equals(user.getUsername()))
+		{
+			//If its not the same, check if username is already taken
+			if(userRepository.findByUsername(user.getUsername()) != null)
+				throw new UsernameTaken("Username'" + user.getUsername() + "' is already taken.");
+		}
 		
 		updatedUser.setFirstName(user.getFirstName());
 		updatedUser.setLastName(user.getLastName());

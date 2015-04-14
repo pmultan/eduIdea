@@ -21,7 +21,8 @@
 							<legend th:if="${model.message == null}"
 								class="alert alert-warning" role="alert">
 								<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-								<span class="sr-only">Info:</span> In order to save the changes, you must enter the user password and press Save Changes button.
+								<span class="sr-only">Info:</span> In order to save the changes,
+								you must enter the user password and press Save Changes button.
 							</legend>
 							<legend th:if="${model.message == 'ok'}"
 								class="alert alert-success" role="alert">
@@ -31,8 +32,14 @@
 							</legend>
 							<legend th:if="${model.message == 'password'}"
 								class="alert alert-danger" role="alert">
-								<span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
-								<span class="sr-only">Error:</span> You have entered wrong password !
+								<span class="glyphicon glyphicon-info-sig" aria-hidden="true"></span>
+								<span class="sr-only">Error:</span> You have entered wrong
+								password !
+							</legend>
+							<legend th:if="${model.message == 'usernameTaken'}"
+								class="alert alert-danger" role="alert">
+								<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+								<span class="sr-only">Error:</span> Username is already taken, please select different one.
 							</legend>
 							<div class="form-group">
 								<label for="username" class="col-lg-2 control-label">Username</label>

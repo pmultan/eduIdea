@@ -13,7 +13,7 @@ import sk.revolone.eduidea.viewmodel.LoginViewModel;
 import sk.revolone.eduidea.viewmodel.WipViewModel;
 
 @Controller
-public class SecurityController {
+public class SecurityController extends BaseController {
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(HomeController.class);

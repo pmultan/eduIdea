@@ -1,7 +1,6 @@
 package sk.revolone.eduidea.viewmodel;
 
 import java.text.DateFormat;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;

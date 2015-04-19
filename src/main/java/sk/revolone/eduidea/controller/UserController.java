@@ -29,6 +29,7 @@ import sk.revolone.eduidea.exception.EntityNotFound;
 import sk.revolone.eduidea.exception.UsernameTaken;
 import sk.revolone.eduidea.viewmodel.user.EditProfileViewModel;
 
+@SuppressWarnings("deprecation")
 @Controller
 public class UserController extends BaseController {
 
@@ -103,9 +104,10 @@ public class UserController extends BaseController {
 
 		// Update user context
 		authenticateUserAndSetSession(password, user, request);
-
 		mav.setViewName("user/edit-profile");
 		mav.addObject("model", new EditProfileViewModel(user, "ok"));
+		
+		logger.info("User with e-mail" + user.getEmail() + "has changed his profile");
 		return mav;
 	}
 

@@ -1,6 +1,5 @@
 package sk.revolone.eduidea.viewmodel;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.context.request.RequestContextHolder;
@@ -12,7 +11,6 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 public class BaseViewModel {
 
 	public String appTitle = "EduIdea";
-	private String applicationUrl;
 	private String message;
 	
 	public String getApplicationUrl() {

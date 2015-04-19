@@ -7,10 +7,104 @@
 		th:if="${#httpServletRequest.remoteUser == null}"></div>
 	<div th:include="shared/layoutLogged :: headerFragment"
 		th:if="${#httpServletRequest.remoteUser != null}"></div>
-
 	<div class="container">
-		<div class="page-header clearfix"><h2>Sign Up !</h2></div>
-		<div th:include="shared/wipFragment :: wipFragment"></div>
+		<div class="page-header clearfix">
+			<h3>Registration</h3>
+		</div>
+		<form name="f" th:action="@{/sign-up}" accept-charset="utf-8"
+			method="post" class="form-horizontal" action="/sign-up/"
+			th:object="${model}">
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="well bs-component">
+						<fieldset>
+							<legend th:if="${model.message != null}"
+								class="alert alert-warning" role="alert">
+								<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+								<span class="sr-only">Info:</span>
+							</legend>
+							<div class="form-group">
+								<label for="username" class="col-lg-2 control-label">Username</label>
+								<div class="col-lg-10">
+									<input type="text" id="username" name="username"
+										class="form-control" placeholder="Username"
+										th:field="*{username}" />
+									<p th:each="err : ${#fields.errors('username')}"
+										th:text="${err}" class="label label-danger"></p>
+								</div>
+							</div>
+							<div class="form-group"
+								th:classappend="${#fields.hasErrors('email')} ? has-error : has-success">
+								<label for="email" class="col-lg-2 control-label">E-Mail</label>
+								<div class="col-lg-10">
+									<input type="text" id="email" name="email" class="form-control"
+										placeholder="Your E-Mail address" th:field="*{email}" />
+									<p th:each="err : ${#fields.errors('email')}" th:text="${err}"
+										class="label label-danger"></p>
+								</div>
+							</div>
+							<div class="form-group"
+								th:classappend="${#fields.hasErrors('emailConfirmation')} ? has-error : has-success">
+								<label for="lastName" class="col-lg-2 control-label">Confirm
+									E-Mail</label>
+								<div class="col-lg-10">
+									<input type="text" id="emailConfirmation"
+										name="emailConfirmation" class="form-control"
+										placeholder="Confirm your E-Mail address"
+										th:field="*{emailConfirmation}" />
+									<p th:each="err : ${#fields.errors('emailConfirmation')}"
+										th:text="${err}" class="label label-danger"></p>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="firstname" class="col-lg-2 control-label">First
+									Name</label>
+								<div class="col-lg-10">
+									<input type="text" id="firstname" name="firstname"
+										class="form-control" placeholder="First Name"
+										th:field="*{firstname}" />
+									<p th:each="err : ${#fields.errors('firstname')}"
+										th:text="${err}" class="label label-danger"></p>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="lastnme" class="col-lg-2 control-label">Last
+									Name</label>
+								<div class="col-lg-10">
+									<input type="text" id="lastname" name="lastname"
+										class="form-control" placeholder="Last Name"
+										th:field="*{lastname}" />
+									<p th:each="err : ${#fields.errors('lastname')}"
+										th:text="${err}" class="label label-danger"></p>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="password" class="col-lg-2 control-label">Password</label>
+								<div class="col-lg-10">
+									<input type="password" id="password" name="password"
+										class="form-control" placeholder="password" />
+									<p th:each="err : ${#fields.errors('password')}"
+										th:text="${err}" class="label label-danger"></p>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-lg-10 col-lg-offset-2">
+									<button type="submit" class="btn btn-primary">Submit
+										registration !</button>
+								</div>
+							</div>
+						</fieldset>
+					</div>
+				</div>
+				<div class="col-lg-4 col-lg-offset-1">
+					<div class="alert alert-info" role="alert">
+						<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+						<span class="sr-only">Info:</span> You wont be able to change your
+						<b>e-mail</b> later on, but you will be able to change your <b>username</b>.
+					</div>
+				</div>
+			</div>
+		</form>
 	</div>
 </body>
 </html>

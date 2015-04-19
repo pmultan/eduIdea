@@ -16,6 +16,6 @@ public class BaseController {
 	}
 	
 	protected ModelAndView errorView(String message) {
-		return errorView("message", null);
+		return errorView(message, null);
 	}
 }

@@ -6,7 +6,7 @@ import org.hibernate.validator.constraints.Email;
 import sk.revolone.eduidea.utils.validation.*;
 
 @FieldMatch.List({
-    @FieldMatch(first = "email", second = "emailConfirmation", message = "The e-mail fields must match"),
+    @FieldMatch(first = "email", second = "emailConfirmation"),
 })
 
 public class SignUpViewModel extends BaseViewModel {

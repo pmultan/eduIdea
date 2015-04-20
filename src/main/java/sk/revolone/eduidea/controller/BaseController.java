@@ -15,6 +15,13 @@ public class BaseController {
 		return mav;
 	}
 	
+	protected ModelAndView successView(String message) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("shared/success");
+		mav.addObject("message", message);
+		return mav;
+	}
+	
 	protected ModelAndView errorView(String message) {
 		return errorView(message, null);
 	}

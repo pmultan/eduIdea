@@ -3,6 +3,8 @@ package sk.revolone.eduidea.viewmodel;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
 import sk.revolone.eduidea.utils.validation.*;
 
 @FieldMatch.List({
@@ -13,13 +15,19 @@ public class SignUpViewModel extends BaseViewModel {
 	
 	@NotNull
 	@Email
+	@NotEmpty
 	private String email;
 	@NotNull
 	@Email
+	@NotEmpty
 	private String emailConfirmation;
+	@NotEmpty
 	private String username;
+	@NotEmpty
 	private String firstname;
+	@NotEmpty
 	private String lastname;
+	@NotEmpty
 	private String password;
 	
 	public String getEmail() {

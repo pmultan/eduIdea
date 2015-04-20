@@ -1,8 +1,7 @@
-
-drop table News;
-drop table Role;
-drop table User;
-
+	drop table News;
+	drop table Role;
+	drop table User;
+	
     create table News (
         Id integer not null auto_increment,
         DateCreated date,
@@ -13,14 +12,15 @@ drop table User;
     );
 
     create table Role (
-        id bigint not null,
+        id bigint not null auto_increment,
         role_id integer,
         user_id bigint,
         primary key (id)
     );
 
     create table User (
-        id bigint not null,
+        id bigint not null auto_increment,
+        activationKey varchar(255),
         email varchar(255),
         firstName varchar(255),
         isActivated bit,

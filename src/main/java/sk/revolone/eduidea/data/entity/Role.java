@@ -1,6 +1,8 @@
 package sk.revolone.eduidea.data.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
  
@@ -8,6 +10,7 @@ import javax.persistence.OneToOne;
 public class Role {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
 	@OneToOne
@@ -16,9 +19,6 @@ public class Role {
 	
 	public Long getId() {
 		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
 	}
 	public User getUser() {
 		return user;

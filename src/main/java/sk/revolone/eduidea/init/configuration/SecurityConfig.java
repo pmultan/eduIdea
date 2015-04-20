@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.authentication.dao.ReflectionSaltSource;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -28,6 +30,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth)
 			throws Exception {
+		 	ReflectionSaltSource rss = new ReflectionSaltSource();
+		    rss.setUserPropertyToUse("salt");
+		    DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+		    provider.setSaltSource(rss);
+		    provider.setUserDetailsService(customUserDetailsService);
+		    provider.setPasswordEncoder(new Md5PasswordEncoder());
+		
+		    auth.authenticationProvider(provider);
 		    auth.userDetailsService(customUserDetailsService).passwordEncoder(new Md5PasswordEncoder());
 		    /*auth.inMemoryAuthentication().withUser("user").password("password")
 				.roles("USER").and().withUser("admin").password("password")

@@ -1,15 +1,22 @@
 package sk.revolone.eduidea.data.entity;
 
+import java.util.UUID;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+
+import org.hibernate.annotations.Type;
 
 @Entity
 public class User implements CustomUser{
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
 	@Column(unique=true)
@@ -26,6 +33,17 @@ public class User implements CustomUser{
 	
 	private Boolean isActivated;
 	
+	@Type(type = "uuid-char")
+	private UUID activationKey;
+	
+	public UUID getActivationKey() {
+		return activationKey;
+	}
+
+	public void setActivationKey(UUID activationKey) {
+		this.activationKey = activationKey;
+	}
+
 	public Boolean getIsActivated() {
 		return isActivated;
 	}
@@ -36,10 +54,6 @@ public class User implements CustomUser{
 
 	public Long getId() {
 		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getFirstName() {

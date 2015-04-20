@@ -11,6 +11,12 @@
 		<div class="page-header clearfix">
 			<h3>Registration</h3>
 		</div>
+		
+		<div th:if="(${message} == 'taken')" class="alert alert-danger">
+			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+			<span class="sr-only">Error:</span> Username or E-Mail is already taken. Please choose different one.
+		</div>
+		
 		<form name="f" th:action="@{/sign-up}" accept-charset="utf-8"
 			method="post" class="form-horizontal" action="/sign-up/"
 			th:object="${model}">
@@ -23,7 +29,7 @@
 								<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
 								<span class="sr-only">Info:</span>
 							</legend>
-							<div class="form-group">
+							<div class="form-group" th:classappend="${#fields.hasErrors('username')} ? has-error">
 								<label for="username" class="col-lg-2 control-label">Username</label>
 								<div class="col-lg-10">
 									<input type="text" id="username" name="username"
@@ -56,7 +62,7 @@
 										th:text="${err}" class="label label-danger"></p>
 								</div>
 							</div>
-							<div class="form-group">
+							<div class="form-group" th:classappend="${#fields.hasErrors('firstname')} ? has-error">
 								<label for="firstname" class="col-lg-2 control-label">First
 									Name</label>
 								<div class="col-lg-10">
@@ -67,7 +73,7 @@
 										th:text="${err}" class="label label-danger"></p>
 								</div>
 							</div>
-							<div class="form-group">
+							<div class="form-group" th:classappend="${#fields.hasErrors('lastname')} ? has-error">
 								<label for="lastnme" class="col-lg-2 control-label">Last
 									Name</label>
 								<div class="col-lg-10">
@@ -78,7 +84,7 @@
 										th:text="${err}" class="label label-danger"></p>
 								</div>
 							</div>
-							<div class="form-group">
+							<div class="form-group" th:classappend="${#fields.hasErrors('password')} ? has-error">
 								<label for="password" class="col-lg-2 control-label">Password</label>
 								<div class="col-lg-10">
 									<input type="password" id="password" name="password"

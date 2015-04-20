@@ -1,7 +1,7 @@
 
-INSERT INTO USER (id, firstname, lastname, username, password, email) VALUES
-(1, "Lokal", "Adminovsky", "admin", "5f4dcc3b5aa765d61d8327deb882cf99", "multan.peter@gmail.com"),
-(2, "Lokal", "Userovsky", "user", "5f4dcc3b5aa765d61d8327deb882cf99", "test@test.com");
+INSERT INTO USER (id, firstname, lastname, username, password, email, isActivated) VALUES
+(1, "Lokal", "Adminovsky", "admin", "5f4dcc3b5aa765d61d8327deb882cf99", "multan.peter@gmail.com", 1),
+(2, "Lokal", "Userovsky", "user", "5f4dcc3b5aa765d61d8327deb882cf99", "test@test.com", 1);
  
 INSERT INTO ROLE VALUES
 (1,2,1),

@@ -23,6 +23,16 @@ public class User implements CustomUser{
 	
 	@OneToOne(mappedBy="user", cascade={CascadeType.ALL})
 	private Role role;
+	
+	private Boolean isActivated;
+	
+	public Boolean getIsActivated() {
+		return isActivated;
+	}
+
+	public void setIsActivated(Boolean isActivated) {
+		this.isActivated = isActivated;
+	}
 
 	public Long getId() {
 		return id;

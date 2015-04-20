@@ -13,7 +13,9 @@
 		</div>
 		<div th:if="(${loginFailed})" class="alert alert-danger">
 			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-			<span class="sr-only">Error:</span> Login failed
+			<span class="sr-only">Error:</span> Login failed, Possible reasons : <br />
+			- Username or Password is incorrect <br />
+			- User is not yet activated
 		</div>
 		<div th:if="(${loggedOut})" class="alert alert-success">
 			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>

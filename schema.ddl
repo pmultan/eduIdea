@@ -1,8 +1,8 @@
 
-	drop table News;
-	drop table Role;
-	drop table User;
-	
+drop table News;
+drop table Role;
+drop table User;
+
     create table News (
         Id integer not null auto_increment,
         DateCreated date,
@@ -23,6 +23,7 @@
         id bigint not null,
         email varchar(255),
         firstName varchar(255),
+        isActivated bit,
         lastName varchar(255),
         password varchar(255),
         username varchar(255),

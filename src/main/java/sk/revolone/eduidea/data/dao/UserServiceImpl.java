@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
 	public User updateProfile(User user) throws EntityNotFound, UsernameTaken {
 		User updatedUser = userRepository.findByUsernameOrEmail(user.getEmail(), user.getEmail());
 		if (updatedUser == null) 
-			throw new EntityNotFoundException("User that you are trying to update was not found in DB.");
+			throw new EntityNotFoundException("User that you are trying to update was not found or is not yet activated.");
 		
 		// Check if the username is not the same
 		if(!updatedUser.getUsername().equals(user.getUsername()))

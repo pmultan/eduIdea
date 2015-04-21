@@ -8,8 +8,8 @@
 		th:if="${#httpServletRequest.remoteUser != null}"></div>
 	<div class="container">
 		<div th:fragment="errorFragment">
-			<div class="alert alert-error" role="alert">
-				<span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span>
+			<div class="alert alert-danger" role="alert">
+				<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 				<span class="sr-only">Error:</span>There was an error on the page : <br />
 				<span th:text="${message}"></span>
 			</div>

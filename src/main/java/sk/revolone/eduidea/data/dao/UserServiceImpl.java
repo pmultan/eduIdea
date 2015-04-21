@@ -131,4 +131,15 @@ public class UserServiceImpl implements UserService {
 		sender.sendActivationEmail(registeredUser.getActivationKey(), registeredUser, request);
 	}
 
+	@Override
+	@Transactional
+	public User activateUser(UUID activationKey) throws EntityNotFound {
+		User userToActivate = userRepository.findByActivationKey(activationKey);
+		if(userToActivate == null || userToActivate.getIsActivated()) throw new EntityNotFound("User with activation key: " + activationKey + " does not exist.");
+		userToActivate.setIsActivated(true);
+		userRepository.save(userToActivate);
+		
+		return userToActivate;
+	}
+
 }

@@ -15,9 +15,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import sk.revolone.eduidea.data.dao.UserService;
+import sk.revolone.eduidea.exception.EntityNotFound;
 import sk.revolone.eduidea.exception.UsernameOrEmailTaken;
 import sk.revolone.eduidea.viewmodel.SignUpViewModel;
 import sk.revolone.eduidea.viewmodel.WipViewModel;
@@ -81,21 +83,23 @@ public class SecurityController extends BaseController {
 	}
 
 	@RequestMapping(value = "/sign-up", method = RequestMethod.POST)
-	public ModelAndView signUpPost(@ModelAttribute("model") @Valid SignUpViewModel model,
+	public ModelAndView signUpPost(
+			@ModelAttribute("model") @Valid SignUpViewModel model,
 			BindingResult bindingResult, HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView("home/signupPage", bindingResult.getModel());
+		ModelAndView mav = new ModelAndView("home/signupPage",
+				bindingResult.getModel());
 		mav.addObject("model", model);
 		if (bindingResult.hasErrors()) {
 			return mav;
 		}
-		
+
 		try {
 			userService.registerUser(model, request);
 		} catch (UsernameOrEmailTaken e) {
 			mav.addObject("message", "taken");
 			return mav;
 		}
-		
+
 		return successView("You've been successfully registered ! Please check your e-mail address to activate your account.");
 	}
 
@@ -109,5 +113,17 @@ public class SecurityController extends BaseController {
 		mav.addObject("model", wipModel);
 
 		return (mav);
+	}
+
+	@RequestMapping(value = "/activation", method = RequestMethod.GET)
+	public ModelAndView activateUser(@RequestParam("key") UUID key) {
+		try {
+			userService.activateUser(key);
+		} catch (EntityNotFound e) {
+			return errorView(
+					"User with such activation key does not exist or is already activated",
+					e);
+		}
+		return successView("Your account has been successfully activated. You can now proceed to Log-in.");
 	}
 }

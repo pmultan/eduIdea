@@ -1,6 +1,7 @@
 package sk.revolone.eduidea.data.dao;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,4 +20,5 @@ public interface UserService {
     public User findByUsername(String username) throws EntityNotFound;
     public User findByEmail(String email) throws EntityNotFound;
     public void registerUser(SignUpViewModel viewModel, HttpServletRequest request) throws UsernameOrEmailTaken;
+    public User activateUser(UUID activationKey) throws EntityNotFound;
 }

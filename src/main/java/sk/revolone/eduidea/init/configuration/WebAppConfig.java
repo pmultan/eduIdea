@@ -37,6 +37,10 @@ public class WebAppConfig {
     private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "hibernate.dialect";
     private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "hibernate.show_sql";
     private static final String PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN = "entitymanager.packages.to.scan";
+    
+    private static final String PROPERTY_NAME_HIBERNATE_USEUNICODE = "hibernate.connection.useUnicode";
+    private static final String PROPERTY_NAME_HIBERNATE_characterEncoding = "hibernate.connection.characterEncoding";
+    private static final String PROPERTY_NAME_HIBERNATE_charSet= "hibernate.connection.charSet";
  
     @Resource
     private Environment env;
@@ -49,7 +53,7 @@ public class WebAppConfig {
         dataSource.setUrl(env.getRequiredProperty(PROPERTY_NAME_DATABASE_URL));
         dataSource.setUsername(env.getRequiredProperty(PROPERTY_NAME_DATABASE_USERNAME));
         dataSource.setPassword(env.getRequiredProperty(PROPERTY_NAME_DATABASE_PASSWORD));
- 
+        
         return dataSource;
     }
  
@@ -69,6 +73,9 @@ public class WebAppConfig {
         Properties properties = new Properties();
         properties.put(PROPERTY_NAME_HIBERNATE_DIALECT, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_DIALECT));
         properties.put(PROPERTY_NAME_HIBERNATE_SHOW_SQL, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_SHOW_SQL));
+        properties.put(PROPERTY_NAME_HIBERNATE_USEUNICODE, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_USEUNICODE));
+        properties.put(PROPERTY_NAME_HIBERNATE_characterEncoding, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_characterEncoding));
+        properties.put(PROPERTY_NAME_HIBERNATE_charSet, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_charSet));
         return properties;
     }
  

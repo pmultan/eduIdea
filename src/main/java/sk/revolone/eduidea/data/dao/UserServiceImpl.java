@@ -110,9 +110,11 @@ public class UserServiceImpl implements UserService {
 			throws UsernameOrEmailTaken {
 		Md5PasswordEncoder encoder = new Md5PasswordEncoder();
 		Role userRole = new Role();
-		userRole.setRole(1);
-		
 		User registeredUser = new User();
+		
+		userRole.setRole(1);
+		userRole.setUser(registeredUser);
+		
 		registeredUser.setUsername(viewModel.getUsername());
 		registeredUser.setActivationKey(UUID.randomUUID());
 		registeredUser.setEmail(viewModel.getEmail());

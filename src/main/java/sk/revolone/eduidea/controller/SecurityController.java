@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import sk.revolone.eduidea.data.dao.UserService;
 import sk.revolone.eduidea.exception.EntityNotFound;
 import sk.revolone.eduidea.exception.UsernameOrEmailTaken;
+import sk.revolone.eduidea.viewmodel.LoginViewModel;
 import sk.revolone.eduidea.viewmodel.SignUpViewModel;
 import sk.revolone.eduidea.viewmodel.WipViewModel;
 

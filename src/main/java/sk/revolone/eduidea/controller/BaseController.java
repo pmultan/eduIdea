@@ -2,6 +2,8 @@ package sk.revolone.eduidea.controller;
 
 import org.springframework.web.servlet.ModelAndView;
 
+import sk.revolone.eduidea.viewmodel.WipViewModel;
+
 public class BaseController {
 	
 	protected ModelAndView errorView(String message, Exception e) {
@@ -22,6 +24,15 @@ public class BaseController {
 		return mav;
 	}
 	
+	protected ModelAndView wipView(String pageTitle) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("shared/wipFragment");
+
+		WipViewModel wipModel = new WipViewModel(pageTitle);
+		mav.addObject("model", wipModel);
+
+		return (mav);
+	}
 	protected ModelAndView errorView(String message) {
 		return errorView(message, null);
 	}

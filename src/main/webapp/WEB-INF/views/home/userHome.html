@@ -3,12 +3,18 @@
 <head th:include="shared/layoutVisitor :: headFragment">
 </head>
 <body>
-	<div th:include="shared/layoutVisitor :: headerFragment" th:if="${#httpServletRequest.remoteUser == null}"></div>
-	<div th:include="shared/layoutLogged :: headerFragment" th:if="${#httpServletRequest.remoteUser != null}"></div>
+	<div th:include="shared/layoutVisitor :: headerFragment"
+		th:if="${#httpServletRequest.remoteUser == null}"></div>
+	<div th:include="shared/layoutLogged :: headerFragment"
+		th:if="${#httpServletRequest.remoteUser != null}"></div>
 
 	<div class="container">
 		<div class="page-header clearfix">
 			<h3>This test page is accessible only for registered users.</h3>
+
+			Logged user: <span sec:authentication="name">Bob</span> Roles: <span
+				sec:authentication="principal.authorities">[ROLE_USER,
+				ROLE_ADMIN]</span>
 		</div>
 	</div>
 </body>

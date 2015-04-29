@@ -8,6 +8,8 @@
 		$(document).ready(function() {
 			$('#news_table').dataTable({
 				"columns" : [ {
+					"width" : "15%",
+				}, {
 					"width" : "20%",
 				}, null, {
 					"orderable" : false
@@ -49,11 +51,13 @@
 		<div class="alert alert-success" role="alert"
 			th:if="${!#strings.isEmpty(model.getMessage())}">
 			<span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
-			<span class="sr-only">Success:</span> <span th:text="${model.getMessage()}"></span>
+			<span class="sr-only">Success:</span> <span
+				th:text="${model.getMessage()}"></span>
 		</div>
 		<table id="news_table" class="table table-striped dataTable no-footer">
 			<thead>
 				<tr>
+					<th>Date Created</th>
 					<th>Title</th>
 					<th>Text</th>
 					<th>Actions</th>
@@ -61,6 +65,8 @@
 			</thead>
 			<tbody>
 				<tr th:each="news, row : ${model.getNewsList()}">
+					<td
+						th:text="${#dates.format(news.getDateCreated(), 'd.MM.yyyy H:mm')}"></td>
 					<td th:text="${#strings.abbreviate(news.getTitle(), 200)}"></td>
 					<td th:text="${#strings.abbreviate(news.getText(), 200)}"></td>
 					<td

@@ -25,7 +25,7 @@
 			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 			<span class="sr-only">Info:</span> Successfully logged in !
 		</div>
-		<div th:if="(${unathorizedAccess})" class="alert alert-warning">
+		<div th:if="(${unathorizedAccess}) and (${#httpServletRequest.remoteUser == null})" class="alert alert-warning">
 			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 			<span class="sr-only">Info:</span> 403 - Unauthorized access <br />
 			First you need to log in

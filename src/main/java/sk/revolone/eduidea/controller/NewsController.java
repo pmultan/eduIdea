@@ -32,7 +32,7 @@ public class NewsController extends BaseController {
 	@RequestMapping(value = "admin/edit-news-list", method = RequestMethod.GET)
 	public ModelAndView editNewsList() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("admin/editNewsList");
+		mav.setViewName("news/editNewsList");
 
 		EditNewsListViewModel model = new EditNewsListViewModel();
 		model.setNewsList(newsService.findAll());
@@ -50,7 +50,6 @@ public class NewsController extends BaseController {
 	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(value = "admin/remove-news", method = RequestMethod.GET)
 	public ModelAndView removeNews(@RequestParam("id") int id) {
-		//TODO: Need to find a better way to update news grid then redirecting and returing whole MAV
 		try {
 			newsService.delete(id);
 		} catch (NewsNotFound e) {
@@ -58,11 +57,10 @@ public class NewsController extends BaseController {
 		}
 		
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("admin/editNewsList");
+		mav.setViewName("news/editNewsList :: newsGrid");
 
 		EditNewsListViewModel model = new EditNewsListViewModel();
 		model.setNewsList(newsService.findAll());
-		model.setMessage("News entry was successfully removed.");
 		
 		mav.addObject("model", model);
 		return mav;

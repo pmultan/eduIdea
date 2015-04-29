@@ -23,20 +23,19 @@
 				var jsonData = {
 					"id" : id
 				};
-				window.location.replace("../admin/remove-news?id=" + id);
-				/*$.ajax({
+				/*window.location.replace("../admin/remove-news?id=" + id);*/
+				$.ajax({
 					url : "../admin/remove-news?id=" + id,
 					type : "GET",
-					dataType : "json",
-					data : JSON.stringify(jsonData),
 					success : function(data) {
-						alert("suc");
+						var n = noty({ text: 'News entry was successfully removed', type : 'success',  layout: 'topCenter'});
+						$("#news_table").html(data);
 					},
 					error : function(data, status, er) {
 						alert("error: " + data + " status: " + status + " er:"
 								+ er);
 					}
-				})*/
+				})
 				/*$.get("../admin/remove-news?id=" + id, function(data) {
 					alert("Load was performed.");
 				});*/
@@ -48,13 +47,7 @@
 	<div th:include="shared/layoutLogged :: headerFragment"
 		th:if="${#httpServletRequest.remoteUser != null}"></div>
 	<div class="container">
-		<div class="alert alert-success" role="alert"
-			th:if="${!#strings.isEmpty(model.getMessage())}">
-			<span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
-			<span class="sr-only">Success:</span> <span
-				th:text="${model.getMessage()}"></span>
-		</div>
-		<table id="news_table" class="table table-striped dataTable no-footer">
+		<table id="news_table" class="table table-striped dataTable no-footer" th:fragment="newsGrid">
 			<thead>
 				<tr>
 					<th>Date Created</th>

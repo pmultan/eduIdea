@@ -20,6 +20,9 @@
 	src="//cdn.datatables.net/1.10.6/js/jquery.dataTables.js"></script>
 <script type="text/javascript" charset="utf8"
 	src="//cdn.datatables.net/plug-ins/1.10.6/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+
+<!-- NOTY -->
+<script th:src="@{/assets/js/jquery.noty.packaged.min.js}"></script>
 </head>
 <body>
 	<div th:fragment="headerFragment">
@@ -29,15 +32,17 @@
 					<img
 						src="http://www.findabetterway.org.uk/wp-content/uploads/2014/04/fabw-logo-new.png"
 						style="width: 70px;" class="navbar-left" /> <a th:href="@{/}"
-						class="navbar-brand" th:inline="text" style="margin-top: 15px; margin-right: 20px; color: rgb(184, 30, 13);">[[${model == null ?
-						"EduIdea" : model.appTitle}]]</a>
+						class="navbar-brand" th:inline="text"
+						style="margin-top: 15px; margin-right: 20px; color: rgb(184, 30, 13);">[[${model
+						== null ? "EduIdea" : model.appTitle}]]</a>
 					<button class="navbar-toggle" type="button" data-toggle="collapse"
 						data-target="#navbar-main" style="margin-top: 25px;">
 						<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
 				</div>
-				<div class="navbar-collapse collapse" id="navbar-main" style="margin-top: 15px;">
+				<div class="navbar-collapse collapse" id="navbar-main"
+					style="margin-top: 15px;">
 					<ul class="nav navbar-nav">
 						<li class=""><a th:href="@{/}">Home</a></li>
 						<li class="dropdown"><a class="dropdown-toggle"

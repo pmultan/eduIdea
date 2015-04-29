@@ -1,11 +1,13 @@
 package sk.revolone.eduidea.data.entity;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /*
  * News entity - Part of skeleton application 
@@ -18,6 +20,7 @@ public class News {
 	@GeneratedValue
 	private Integer Id;
 	
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date DateCreated;
 	private Long UserCreated;
 	private String Title;

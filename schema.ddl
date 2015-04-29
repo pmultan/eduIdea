@@ -1,10 +1,11 @@
-	drop table News;
-	drop table Role;
-	drop table User;
-	
+
+drop table News;
+drop table Role;
+drop table User;
+
     create table News (
         Id integer not null auto_increment,
-        DateCreated date,
+        DateCreated datetime,
         Text TEXT,
         Title varchar(255),
         UserCreated bigint,

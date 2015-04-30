@@ -5,69 +5,129 @@
 </head>
 <body>
 	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#news_table').dataTable({
-				"columns" : [ {
-					"width" : "15%",
-				}, {
-					"width" : "20%",
-				}, null, {
-					"orderable" : false
-				} ]
-			});
-		});
-
 		function removeNews(id) {
 			var confirmed = confirm("Are you sure that you want to remove this news ?");
 			if (confirmed) {
-				var jsonData = {
-					"id" : id
-				};
-				/*window.location.replace("../admin/remove-news?id=" + id);*/
 				$.ajax({
 					url : "../admin/remove-news?id=" + id,
 					type : "GET",
 					success : function(data) {
-						var n = noty({ text: 'News entry was successfully removed', type : 'success',  layout: 'topCenter'});
-						$("#news_table").html(data);
+						var n = noty({
+							text : 'News entry was successfully removed',
+							type : 'success',
+							layout : 'topCenter'
+						});
+						$("#bodyContainerWrapper").html(data);
 					},
 					error : function(data, status, er) {
 						alert("error: " + data + " status: " + status + " er:"
 								+ er);
 					}
-				})
-				/*$.get("../admin/remove-news?id=" + id, function(data) {
-					alert("Load was performed.");
-				});*/
+				});
 			}
+		}
+
+		function addNewsView() {
+			$
+					.ajax({
+						url : "../admin/add-edit-news?id=",
+						type : "GET",
+						success : function(data) {
+							$("#bodyContainerWrapper").html(data);
+						},
+						error : function(data, status, er) {
+							alert("error: " + data + " status: " + status
+									+ " er:" + er);
+						}
+					});
+		}
+
+		function editNews(id) {
+			$
+					.ajax({
+						url : "../admin/add-edit-news?id=" + id,
+						type : "GET",
+						success : function(data) {
+							$("#bodyContainerWrapper").html(data);
+						},
+						error : function(data, status, er) {
+							alert("error: " + data + " status: " + status
+									+ " er:" + er);
+						}
+					});
+		}
+		
+		function cancel()
+		{
+			$
+			.ajax({
+				url : "../admin/add-edit-news-partial",
+				type : "GET",
+				success : function(data) {
+					$("#bodyContainerWrapper").html(data);
+				},
+				error : function(data, status, er) {
+					alert("error: " + data + " status: " + status
+							+ " er:" + er);
+				}
+			});
 		}
 	</script>
 	<div th:include="shared/layoutVisitor :: headerFragment"
 		th:if="${#httpServletRequest.remoteUser == null}"></div>
 	<div th:include="shared/layoutLogged :: headerFragment"
 		th:if="${#httpServletRequest.remoteUser != null}"></div>
-	<div class="container">
-		<table id="news_table" class="table table-striped dataTable no-footer" th:fragment="newsGrid">
-			<thead>
-				<tr>
-					<th>Date Created</th>
-					<th>Title</th>
-					<th>Text</th>
-					<th>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="news, row : ${model.getNewsList()}">
-					<td
-						th:text="${#dates.format(news.getDateCreated(), 'd.MM.yyyy H:mm')}"></td>
-					<td th:text="${#strings.abbreviate(news.getTitle(), 200)}"></td>
-					<td th:text="${#strings.abbreviate(news.getText(), 200)}"></td>
-					<td
-						th:utext="${'&lt;a href=../admin/edit-news&gt;&lt;span class=&quot;glyphicon glyphicon-pencil&quot;&gt;&lt;/span&gt; &lt;/a&gt;&nbsp;
+	<div id="bodyContainerWrapper">
+		<div class="container" style="padding-top: 50px;" id="bodyContainer"
+			th:fragment="editNewsListBody">
+			<p class="bs-component">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<a href="#" class="btn btn-primary" onclick="addNewsView()">Add
+						new News entry</a>
+				</div>
+			</div>
+			</p>
+			<div id="news_table_wrapper">
+				<table id="news_table"
+					class="table table-striped dataTable no-footer"
+					th:fragment="newsGrid">
+					<thead>
+						<tr>
+							<th>Date Created</th>
+							<th>Title</th>
+							<th>Text</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="news, row : ${model.getNewsList()}">
+							<td
+								th:text="${news.getDateCreated()} ? ${#dates.format(news.getDateCreated(), 'd.MM.yyyy H:mm')}"></td>
+							<td
+								th:text="${news.getTitle()} ? ${#strings.abbreviate(news.getTitle(), 200)}"></td>
+							<td
+								th:text="${news.getText()} ? ${#strings.abbreviate(news.getText(), 200)}"></td>
+							<td
+								th:utext="${'&lt;a href=# onclick=editNews(' + news.getId() + ');&gt;&lt;span class=&quot;glyphicon glyphicon-pencil&quot;&gt;&lt;/span&gt; &lt;/a&gt;&nbsp;
 					&lt;a href=# onclick=removeNews(' + news.getId() + ');&gt;&lt;span class=&quot;glyphicon glyphicon-remove&quot;&gt;&lt;/span&gt;'}"></td>
-				</tr>
-			</tbody>
-		</table>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<script type="text/javascript">
+				$('#news_table').dataTable({
+					"order" : [ [ 0, "desc" ] ],
+					"columns" : [ {
+						"width" : "15%",
+					}, {
+						"width" : "20%",
+					}, null, {
+						"orderable" : false
+					} ]
+				});
+			</script>
+		</div>
 	</div>
 </body>
 </html>

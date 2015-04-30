@@ -1,5 +1,8 @@
 package sk.revolone.eduidea.data.dao;
 
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -36,6 +39,13 @@ public class NewsServiceImpl implements NewsService {
 
 	@Override
 	public List<News> findAll() {
+		List<News> newsList = newsRepository.findAll();
+		Collections.sort(newsList, new Comparator<News>(){	 
+            @Override
+            public int compare(News o1, News o2) {
+                return o2.getDateCreated().compareTo(o1.getDateCreated());
+            }
+        });
 		return newsRepository.findAll();
 	}
 
@@ -47,7 +57,7 @@ public class NewsServiceImpl implements NewsService {
 			throw new NewsNotFound("News entry that you are trying to update was not found in DB.");
 		
 		updatedNews.setText(news.getText());
-		updatedNews.setTitle(updatedNews.getTitle());
+		updatedNews.setTitle(news.getTitle());
 		
 		return updatedNews;
 	}

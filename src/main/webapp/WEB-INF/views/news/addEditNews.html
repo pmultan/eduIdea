@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="shared/layoutVisitor :: headFragment">
+</head>
+<body>
+	<div th:include="shared/layoutVisitor :: headerFragment"
+		th:if="${#httpServletRequest.remoteUser == null}"></div>
+	<div th:include="shared/layoutLogged :: headerFragment"
+		th:if="${#httpServletRequest.remoteUser != null}"></div>
+	<div th:fragment="addEditNewsBody" class="container" style="padding-top: 50px;">
+		<div class="row">
+			<div class="well bs-component">
+				<form name="submitNews" th:action="@{/admin/submit-news}"
+					accept-charset="utf-8" method="post" class="form-horizontal"
+					action="/user/edit-profile/" id="submitNews">
+					<fieldset>
+						<div class="form-group">
+							<label for="title" class="col-lg-2 control-label">Title</label>
+							<div class="col-lg-10">
+								<input type="text" id="title" name="news.title"
+									class="form-control"
+									placeholder="Please enter Title for the News"
+									th:value="${model.getNews()} ? ${model.getNews().getTitle()}" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="text" class="col-lg-2 control-label">Text</label>
+							<div class="col-lg-10">
+								<textarea id="text" name="news.text" class="form-control"
+									placeholder="Please enter main Text"
+									th:text="${model.getNews()} ? ${model.getNews().getText()}"></textarea>
+								<script type="text/javascript">
+									CKEDITOR.replace('text');
+								</script>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-lg-10 col-lg-offset-2">
+								<input type="submit" class="btn btn-default" value="Save" />&nbsp;<a
+									href="#" class="btn btn-primary" onclick="cancel();">Cancel</a> 
+							</div>
+						</div>
+						<input type="hidden" name="news.id"
+							th:value="${model.getNews()} ? ${model.getNews().getId()}" />
+					</fieldset>
+				</form>
+				<script type="text/javascript">
+					var frm = $('#submitNews');
+					frm.submit(function(ev) {
+						frm = $('#submitNews')
+						var editorText = CKEDITOR.instances.text.getData();
+						var formData = frm.serializeObject();
+						formData['news.text'] = editorText;
+						$.ajax({
+							type : frm.attr('method'),
+							url : frm.attr('action'),
+							data : formData,
+							success : function(data) {
+								var n = noty({
+									text : 'News entry was successfully saved',
+									type : 'success',
+									layout : 'topCenter'
+								});
+								$("#bodyContainerWrapper").html(data);
+							}
+						});
+						ev.preventDefault();
+					});
+				</script>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

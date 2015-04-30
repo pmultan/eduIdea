@@ -1,4 +1,3 @@
-
 drop table News;
 drop table Role;
 drop table User;

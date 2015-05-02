@@ -22,7 +22,7 @@ public class News {
 	private Integer Id;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date DateCreated;
+	private Date dateCreated;
 	private Long UserCreated;
 	private String Title;
 
@@ -43,11 +43,11 @@ public class News {
 	}
 
 	public Date getDateCreated() {
-		return DateCreated;
+		return dateCreated;
 	}
 
 	public void setDateCreated(Date dateCreated) {
-		DateCreated = dateCreated;
+		this.dateCreated = dateCreated;
 	}
 
 	public Long getUserCreated() {

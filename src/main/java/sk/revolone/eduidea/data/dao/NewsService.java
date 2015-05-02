@@ -11,4 +11,5 @@ public interface NewsService {
 	    public List<News> findAll();
 	    public News update(News shop) throws NewsNotFound;
 	    public News findById(int id);  
+	    public List<News> findAllOrderByDateCreatedDesc();
 }

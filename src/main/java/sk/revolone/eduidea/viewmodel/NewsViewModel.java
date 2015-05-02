@@ -25,7 +25,7 @@ public class NewsViewModel extends BaseViewModel{
 		String formattedDate = dateFormat.format(date);
 		this.setServerTime(formattedDate);
 		
-		this.setNewsList(newsService.findAll());
+		this.setNewsList(newsService.findAllOrderByDateCreatedDesc());
 	}
 
 	public List<News> getNewsList() {

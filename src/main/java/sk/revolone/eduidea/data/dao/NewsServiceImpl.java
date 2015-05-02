@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,21 +32,15 @@ public class NewsServiceImpl implements NewsService {
 	@Transactional(rollbackFor = NewsNotFound.class)
 	public News delete(int id) throws NewsNotFound {
 		News deletedNews = newsRepository.findOne(id);
-		if (deletedNews == null) 
-			throw new NewsNotFound("News entry that you are trying to remove was not found in DB.");
+		if (deletedNews == null)
+			throw new NewsNotFound(
+					"News entry that you are trying to remove was not found in DB.");
 		newsRepository.delete(deletedNews);
 		return deletedNews;
 	}
 
 	@Override
 	public List<News> findAll() {
-		List<News> newsList = newsRepository.findAll();
-		Collections.sort(newsList, new Comparator<News>(){	 
-            @Override
-            public int compare(News o1, News o2) {
-                return o2.getDateCreated().compareTo(o1.getDateCreated());
-            }
-        });
 		return newsRepository.findAll();
 	}
 
@@ -53,12 +48,13 @@ public class NewsServiceImpl implements NewsService {
 	@Transactional
 	public News update(News news) throws NewsNotFound {
 		News updatedNews = newsRepository.findOne(news.getId());
-		if (updatedNews == null) 
-			throw new NewsNotFound("News entry that you are trying to update was not found in DB.");
-		
+		if (updatedNews == null)
+			throw new NewsNotFound(
+					"News entry that you are trying to update was not found in DB.");
+
 		updatedNews.setText(news.getText());
 		updatedNews.setTitle(news.getTitle());
-		
+
 		return updatedNews;
 	}
 
@@ -67,4 +63,13 @@ public class NewsServiceImpl implements NewsService {
 		return newsRepository.findOne(id);
 	}
 
+	@Transactional(readOnly = true)
+	@Override
+	public List<News> findAllOrderByDateCreatedDesc() {
+		return newsRepository.findAll(sortByDateCreatedDesc());
+	}
+
+	private Sort sortByDateCreatedDesc() {
+		return new Sort(Sort.Direction.DESC, "dateCreated");
+	}
 }

@@ -1,6 +1,5 @@
 package sk.revolone.eduidea.init;
 
-import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration.Dynamic;
@@ -8,7 +7,6 @@ import javax.servlet.ServletRegistration.Dynamic;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
-import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.DispatcherServlet;
 
 import sk.revolone.eduidea.init.configuration.WebAppConfig;

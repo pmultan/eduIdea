@@ -57,10 +57,7 @@
 							data-toggle="dropdown" href="#" id="themes">Ideas <span
 								class="caret"></span></a>
 							<ul class="dropdown-menu" aria-labelledby="themes">
-								<li><a href="#">Basic</a></li>
-								<li class="divider"></li>
-								<li><a href="#">Better</a></li>
-								<li><a href="#">The Best</a></li>
+								<li th:each="categoryItem, row : ${session.rootCategories} "><a href="#" th:text="${categoryItem.getName()}"></a></li>
 							</ul></li>
 						<li><a href="#">About</a></li>
 					</ul>

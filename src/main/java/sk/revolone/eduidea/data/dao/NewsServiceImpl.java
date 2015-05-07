@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import sk.revolone.eduidea.data.entity.News;
 import sk.revolone.eduidea.data.repository.NewsRepository;
 import sk.revolone.eduidea.exception.NewsNotFound;
+import sk.revolone.eduidea.utils.CustomSorts;
 
 @Service
 public class NewsServiceImpl implements NewsService {
@@ -66,10 +67,7 @@ public class NewsServiceImpl implements NewsService {
 	@Transactional(readOnly = true)
 	@Override
 	public List<News> findAllOrderByDateCreatedDesc() {
-		return newsRepository.findAll(sortByDateCreatedDesc());
+		return newsRepository.findAll(CustomSorts.sortByDateCreatedDesc());
 	}
 
-	private Sort sortByDateCreatedDesc() {
-		return new Sort(Sort.Direction.DESC, "dateCreated");
-	}
 }

@@ -3,6 +3,7 @@ package sk.revolone.eduidea.init.configuration;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -13,6 +14,8 @@ import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 import org.thymeleaf.templateresolver.TemplateResolver;
+
+import sk.revolone.eduidea.data.dao.CategoryService;
 
 @Configuration
 @ComponentScan({ "sk.revolone.eduidea.controller" })
@@ -58,5 +61,4 @@ public class ThymeleafConfiguration {
 		SpringSecurityDialect dialect = new SpringSecurityDialect();
 		return dialect;
 	}
-
 }

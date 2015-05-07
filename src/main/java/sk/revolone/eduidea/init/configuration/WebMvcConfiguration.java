@@ -1,9 +1,11 @@
 package sk.revolone.eduidea.init.configuration;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -24,4 +26,13 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 		registry.addResourceHandler("/assets/**").addResourceLocations("/WEB-INF/assets/");
 	}
+    
+    @Bean
+    public RequestInterceptor pagePopulationInterceptor() {
+        return new RequestInterceptor();
+    }
+
+    public @Override void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(pagePopulationInterceptor());
+    }
 }

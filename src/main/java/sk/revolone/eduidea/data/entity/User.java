@@ -1,13 +1,16 @@
 package sk.revolone.eduidea.data.entity;
 
+import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.Type;
@@ -36,6 +39,9 @@ public class User implements CustomUser{
 	@Type(type = "uuid-char")
 	private UUID activationKey;
 	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "author")
+    private Set<Idea> ideas;
+    
 	public UUID getActivationKey() {
 		return activationKey;
 	}

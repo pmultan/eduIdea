@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="shared/layoutVisitor :: headFragment">
+</head>
+
+<body>
+	<div th:include="shared/layoutVisitor :: headerFragment"
+		th:if="${#httpServletRequest.remoteUser == null}"></div>
+	<div th:include="shared/layoutLogged :: headerFragment"
+		th:if="${#httpServletRequest.remoteUser != null}"></div>
+		<div class="nav-side-menu" style="padding-top:140px;">
+			<div class="brand">Categories</div>
+			<i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse"
+				data-target="#menu-content"></i>
+
+			<div class="menu-list">
+
+				<ul id="menu-content" class="menu-content collapse out">
+					<li th:each="item, row : ${model.getSubCategories()} "><a href="#"> <i class="fa fa-lightbulb-o fa-lg"></i> <span th:text="${item.getName()}"></span>
+					</a></li>
+
+				</ul>
+			</div>
+		</div>
+</body>
+</html>

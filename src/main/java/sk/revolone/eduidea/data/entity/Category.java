@@ -22,6 +22,16 @@ public class Category {
 	@OneToMany(mappedBy="category")
 	private Set<Idea> ideas;
 	
+	public Category()
+	{
+		
+	}
+	
+	public Category(Integer idIn)
+	{
+		this.id = idIn;
+	}
+	
 	public Integer getId() {
 		return id;
 	}

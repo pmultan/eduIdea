@@ -2,6 +2,7 @@ package sk.revolone.eduidea.data.dao;
 
 import java.util.List;
 
+import sk.revolone.eduidea.data.entity.Category;
 import sk.revolone.eduidea.data.entity.Idea;
 import sk.revolone.eduidea.exception.EntityNotFound;
 

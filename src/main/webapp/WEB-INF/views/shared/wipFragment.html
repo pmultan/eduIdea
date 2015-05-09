@@ -6,7 +6,7 @@
 		th:if="${#httpServletRequest.remoteUser == null}"></div>
 	<div th:include="shared/layoutLogged :: headerFragment"
 		th:if="${#httpServletRequest.remoteUser != null}"></div>
-	<div class="container">
+	<div class="container" style="padding-top:100px;">
 		<div class="page-header clearfix" th:utext="'&lt;h2&gt;' + ${model.getPageTitle()} +'&lt;/h2&gt;'"></div>
 		<div th:fragment="wipFragment">
 			<div class="alert alert-info" role="alert">

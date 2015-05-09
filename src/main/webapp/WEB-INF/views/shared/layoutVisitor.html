@@ -12,7 +12,7 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
 <link rel="stylesheet"
-	href="http://bootswatch.com/simplex/bootstrap.min.css" />
+	href="http://bootswatch.com/slate/bootstrap.min.css" />
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <link rel="stylesheet" th:href="@{/assets/css/newsCarousel.css}" />
@@ -31,6 +31,14 @@
 
 <!-- Custom Utilities -->
 <script th:src="@{/assets/js/utilities.js}"></script>
+
+<!-- Fancy Sidebar -->
+<link rel="stylesheet" type="text/css" media="all"
+	href="../../css/fancySidebar.css"
+	th:href="@{/assets/css/fancySidebar.css}" />
+<link
+	href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
+	rel="stylesheet" />
 </head>
 <body>
 	<div th:fragment="headerFragment">
@@ -38,10 +46,10 @@
 			<div class="container" style="padding: 5px;">
 				<div class="navbar-header">
 					<img
-						src="http://www.findabetterway.org.uk/wp-content/uploads/2014/04/fabw-logo-new.png"
-						style="width: 70px;" class="navbar-left" /> <a th:href="@{/}"
+						src="http://www.chest-project.eu/wp-content/themes/chest/images/lamp.png"
+						style="width: 120px;" class="navbar-left" /> <a th:href="@{/}"
 						class="navbar-brand" th:inline="text"
-						style="margin-top: 15px; margin-right: 20px; color: rgb(184, 30, 13);">[[${model
+						style="margin-top: 15px; margin-right: 20px; color: #d19b3d;">[[${model
 						== null ? "EduIdea" : model.appTitle}]]</a>
 					<button class="navbar-toggle" type="button" data-toggle="collapse"
 						data-target="#navbar-main" style="margin-top: 25px;">
@@ -57,7 +65,9 @@
 							data-toggle="dropdown" href="#" id="themes">Ideas <span
 								class="caret"></span></a>
 							<ul class="dropdown-menu" aria-labelledby="themes">
-								<li th:each="categoryItem, row : ${session.rootCategories} "><a href="#" th:text="${categoryItem.getName()}"></a></li>
+								<li th:each="categoryItem, row : ${session.rootCategories} "><a
+									th:href="@{/show-category(id=${categoryItem.getId()})}"
+									th:text="${categoryItem.getName()}"></a></li>
 							</ul></li>
 						<li><a href="#">About</a></li>
 					</ul>

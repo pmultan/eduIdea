@@ -3,6 +3,7 @@ package sk.revolone.eduidea.data.dao;
 import java.util.List;
 
 import sk.revolone.eduidea.data.entity.Category;
+import sk.revolone.eduidea.data.entity.Idea;
 import sk.revolone.eduidea.exception.EntityNotFound;
 
 public interface CategoryService {
@@ -19,4 +20,6 @@ public interface CategoryService {
 	public List<Category> findAllOrderByNameAsc();
 
 	public List<Category> findRootCategories();
+
+	public List<Category> findByParentCategory(Category parentCategory);
 }

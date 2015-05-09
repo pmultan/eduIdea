@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import sk.revolone.eduidea.data.entity.Category;
+import sk.revolone.eduidea.data.entity.Idea;
 import sk.revolone.eduidea.data.repository.CategoryRepository;
 import sk.revolone.eduidea.exception.EntityNotFound;
 import sk.revolone.eduidea.utils.CustomSorts;
@@ -69,6 +70,12 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public List<Category> findRootCategories() {
 		return categoryRepository.findByParentCategory(null);
+	}
+	
+	@Override
+	public List<Category> findByParentCategory(Category parentCategory)
+	{
+		return categoryRepository.findByParentCategory(parentCategory);
 	}
 
 }

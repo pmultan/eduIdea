@@ -6,7 +6,7 @@
 		th:if="${#httpServletRequest.remoteUser == null}"></div>
 	<div th:include="shared/layoutLogged :: headerFragment"
 		th:if="${#httpServletRequest.remoteUser != null}"></div>
-	<div class="container" style="padding-top: 50px;">
+	<div class="container" style="padding-top: 100px;">
 		<div th:fragment="errorFragment">
 			<div class="alert alert-danger" role="alert">
 				<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>

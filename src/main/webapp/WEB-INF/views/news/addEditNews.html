@@ -8,7 +8,7 @@
 		th:if="${#httpServletRequest.remoteUser == null}"></div>
 	<div th:include="shared/layoutLogged :: headerFragment"
 		th:if="${#httpServletRequest.remoteUser != null}"></div>
-	<div th:fragment="addEditNewsBody" class="container" style="padding-top: 50px;">
+	<div th:fragment="addEditNewsBody" class="container" style="padding-top: 100px;">
 		<div class="row">
 			<div class="well bs-component">
 				<form name="submitNews" th:action="@{/admin/submit-news}"

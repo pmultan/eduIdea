@@ -18,7 +18,13 @@ INSERT INTO Category (name, parentCategory_id) VALUES
 ("Výška", null),
 ("Stredná", null),
 ("Základka", null),
+("Telesná", 3),
+("Iné", 3),
+("Informačné technológie", 3),
+("Iné", 1),
 ("Biológia", 2),
+("Telesná", 2),
+("Iné", 2),
 ("Informačné technológie", 2),
 ("Matematika", 2);
 

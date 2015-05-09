@@ -27,7 +27,7 @@ public class ThymeleafConfiguration {
 		templateResolver.setPrefix("/WEB-INF/views/");
 		templateResolver.setSuffix(".html");
 		templateResolver.setTemplateMode("HTML5");
-		templateResolver.setCacheable(false); // TODO: Need to set the switch,
+		templateResolver.setCacheable(true); // TODO: Need to set the switch,
 												// so if not in dev mode this
 												// will be TRUE !
 

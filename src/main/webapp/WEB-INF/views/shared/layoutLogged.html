@@ -7,10 +7,10 @@
 			<div class="container" style="padding: 5px;">
 				<div class="navbar-header">
 					<img
-						src="http://www.findabetterway.org.uk/wp-content/uploads/2014/04/fabw-logo-new.png"
-						style="width: 70px;" class="navbar-left" /> <a th:href="@{/}"
+						src="http://www.chest-project.eu/wp-content/themes/chest/images/lamp.png"
+						style="width: 120px;" class="navbar-left" /> <a th:href="@{/}"
 						class="navbar-brand" th:inline="text"
-						style="margin-top: 15px; margin-right: 20px; color: rgb(184, 30, 13);">[[${model
+						style="margin-top: 15px; margin-right: 20px; color: #d19b3d;">[[${model
 						== null ? "EduIdea" : model.appTitle}]]</a>
 					<button class="navbar-toggle" type="button" data-toggle="collapse"
 						data-target="#navbar-main">
@@ -42,7 +42,7 @@
 					<ul class="nav navbar-nav navbar-right">
 						<li th:if="${#httpServletRequest.remoteUser != null}">
 							<p class="navbar-text" th:inline="text">
-								Logged in as <span style="color: #d9230f;">[[${#httpServletRequest.remoteUser}]]</span>
+								Logged in as <span style="color: #d19b3d;;">[[${#httpServletRequest.remoteUser}]]</span>
 							</p>
 						</li>
 						<li class="dropdown"><a class="dropdown-toggle"
